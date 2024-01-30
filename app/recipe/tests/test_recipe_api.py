@@ -14,7 +14,7 @@ from core.models import (
     Recipe,
     Tag,
     Ingredient,
-    )
+)
 
 from recipe.serializers import (
     RecipeSerializer,
