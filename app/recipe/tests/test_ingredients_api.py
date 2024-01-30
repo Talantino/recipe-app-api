@@ -17,7 +17,7 @@ INGREDIENTS_URL = reverse('recipe:ingredient-list')
 
 
 def detail_url(ingredient_id):
-    """Create and return and ingredient detail URL"""
+    """Create and return an ingredient detail URL"""
     return reverse('recipe:ingredient-detail', args=[ingredient_id])
 
 
@@ -48,7 +48,7 @@ class PrivateIngredientsApiTests(TestCase):
         self.client.force_authenticate(self.user)
 
     def test_retrieve_ingredients(self):
-        """Test retrieving a list of ingredienst"""
+        """Test retrieving a list of ingredients"""
         Ingredient.objects.create(user=self.user, name='Kale')
         Ingredient.objects.create(user=self.user, name='Vanilla')
 
