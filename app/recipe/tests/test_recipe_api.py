@@ -4,7 +4,7 @@ Tests for recipe APIs
 from decimal import Decimal
 import tempfile
 import os
-from PIL import image
+from PIL import Image
 
 from django.contrib.auth import get_user_model
 from django.test import TestCase
@@ -31,9 +31,11 @@ def detail_url(recipe_id):
     """Create and return a recipe detail URL"""
     return reverse('recipe:recipe-detail', args=[recipe_id])
 
+
 def image_upload_url(recipe_id):
     """Creacte and return an image upload URL"""
     return reverse('recipe:recipe-upload-image', args=[recipe_id])
+
 
 def create_recipe(user, **params):
     """Create and return a sample recipe"""
