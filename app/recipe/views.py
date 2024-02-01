@@ -11,7 +11,7 @@ from rest_framework import (
     viewsets,
     mixins,
     status,
-    )
+)
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.authentication import TokenAuthentication
@@ -37,7 +37,7 @@ from recipe import serializers
                 'ingredients',
                 OpenApiTypes.STR,
                 description='Comma separated list of ingredient IDs to filter',
-            )
+            ),
         ]
     )
 )
@@ -59,10 +59,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
         queryset = self.queryset
         if tags:
             tag_ids = self._params_to_ints(tags)
-            queryset = queryset.filter(tags_id_in=tag_ids)
+            queryset = queryset.filter(tags__id__in=tag_ids)
         if ingredients:
             ingredient_ids = self._params_to_ints(ingredients)
-            queryset = queryset.filter(ingredients_id_in=ingredient_ids)
+            queryset = queryset.filter(ingredients__id__in=ingredient_ids)
 
         return queryset.filter(
             user=self.request.user
