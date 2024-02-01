@@ -1,7 +1,7 @@
 """
 Views for the recipe APIs
 """
-from drf_spectacular.utils import(
+from drf_spectacular.utils import (
     extend_schema_view,
     extend_schema,
     OpenApiParameter,
@@ -27,7 +27,7 @@ from recipe import serializers
 
 @extend_schema_view(
     list=extend_schema(
-        paramaters=[
+        parameters=[
             OpenApiParameter(
                 'tags',
                 OpenApiTypes.STR,
@@ -102,7 +102,7 @@ class BaseRecipeAttrViewSet(mixins.DestroyModelMixin,
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def get_query_set(self):
+    def get_queryset(self):
         """Filter queryset to authenticated user"""
         return self.queryset.filter(user=self.request.user).order_by('-name')
 

@@ -399,13 +399,13 @@ class PrivateRecipeApiTests(TestCase):
 
     def test_filter_by_ingredients(self):
         """Test filtering recipes by ingredients"""
-        r1 = create_recipe(user=self.user, title='Push Beans on Toast')
+        r1 = create_recipe(user=self.user, title='Posh Beans on Toast')
         r2 = create_recipe(user=self.user, title='Chicken Cacciatore')
         in1 = Ingredient.objects.create(user=self.user, name='Feta Cheese')
-        in2 = Ingredient.objects.create(user=self.user, name='Chicker')
+        in2 = Ingredient.objects.create(user=self.user, name='Chicken')
         r1.ingredients.add(in1)
         r2.ingredients.add(in2)
-        r3 = create_recipe(user=self.user, title='Red Lentil Deal')
+        r3 = create_recipe(user=self.user, title='Red Lentil Daal')
 
         params = {'ingredients': f'{in1.id},{in2.id}'}
         res = self.client.get(RECIPES_URL, params)
@@ -449,7 +449,7 @@ class ImageUploadTests(TestCase):
         self.assertTrue(os.path.exists(self.recipe.image.path))
 
     def test_upload_image_bad_request(self):
-        """Test uploading invalid image"""
+        """Test uploading an invalid image"""
         url = image_upload_url(self.recipe.id)
         payload = {'image': 'notanimage'}
         res = self.client.post(url, payload, format='multipart')
